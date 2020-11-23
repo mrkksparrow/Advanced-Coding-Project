@@ -1,3 +1,8 @@
+// used Map to store user data, which gives us o(1) retrival time complexity as it uses hashing
+// can alse use binary tree to store data
+// at worst case Map can give o(n) time camplexity on the other hand Binary tree will always have time complexity of o(log(n))
+// find the idea for binary tree at bottom
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -395,3 +400,129 @@ int main(){
     }while(choice!=0);
     return 0;
 }
+
+
+//Binary Tree - o(log(n))
+/*
+#include <bits/stdc++.h>
+using namespace std;
+
+class Detalis{
+    public :
+        string name;
+        string dob;
+        bool giftcard = false;
+        string gfnumber;
+        string gfpin;
+        int reward=0;
+        vector <string> history;
+        string password;
+        int topup = 0;
+        int balance = 10000;
+};
+
+class Account : public Detalis{
+    public :
+        string Acc_No;
+
+};
+
+map<string, Account> mp;
+map<string, Account>::iterator itr;
+
+struct Binary{
+    string Acc_No;
+    Account obj;
+    Binary* left;
+    Binary* right;
+};
+Binary* root = NULL;
+
+void Search(string Acc){
+    Binary* curr = root;
+    while(curr!=NULL){
+        if(curr->Acc_No>Acc){
+            curr = curr->left;
+        }
+        else if(curr->Acc_No==Acc){
+            cout<<"Account : "<<curr->Acc_No<<endl
+                <<"Name : "<<curr->obj.name<<endl
+                <<"DOB : "<<curr->obj.dob<<endl;
+            if(curr->obj.giftcard==false){
+                cout<<"Gift Card Status : Blocked";
+            }
+            else{
+                cout<<"Gift Card Number : "<<curr->obj.gfnumber<<endl
+                    <<"Gidt Card Balance : "<<curr->obj.topup<<endl;
+            }
+            return ;
+        }
+        else{
+            curr = curr->right;
+        }
+    }
+    cout<<"Not Found"<<endl;
+    return ;
+}
+
+void Insert(Binary* temp){
+    Binary* parent = new Binary();
+    Binary* curr = root;
+    if(root==NULL){
+        root = temp;
+    }
+    else{
+        parent = curr;
+        while(curr!=NULL){
+            if(temp->Acc_No>curr->Acc_No){
+                curr = curr->right;
+            }
+            else{
+                curr = curr->left;
+            }
+        }
+        if(parent->Acc_No<temp->Acc_No){
+            parent->right = temp;
+        }
+        else{
+            parent->left = temp;
+        }
+    }
+}
+
+
+void Initialize(Binary* temp){
+    temp->obj.balance = 10000;
+    temp->obj.giftcard = false;
+}
+
+void CreateDetails(){
+    Binary* user = new Binary();
+    cout<<"Enter account number"<<endl;
+    cin>>user->Acc_No;
+    cout<<"Enter ur password"<<endl;
+    cin>>user->obj.password;
+    cin.ignore();
+    cout<<"Enter your name : "<<endl;
+    getline(cin, user->obj.name);
+    cout<<"Enter your dob : "<<endl;
+    cin>>user->obj.dob;
+    Initialize(user);
+    Insert(user);
+}
+
+
+
+int main(){
+    int t=2;
+    while(t--){
+        CreateDetails();
+    }
+    cout<<"Enter ur Account number"<<endl;
+    string acc;
+    cin>>acc;
+    Search(acc);
+    return 0;
+}
+
+*/
